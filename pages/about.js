@@ -1,11 +1,9 @@
-import Head from 'next/head';
+import Seo from '../component/Seo';
 
 function about() {
 	return (
 		<div>
-			<Head>
-				<title>About | Next Movies</title>
-			</Head>
+			<Seo title={'About'} />
 			<h1>About</h1>
 		</div>
 	);
