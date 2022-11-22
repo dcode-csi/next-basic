@@ -1,17 +1,18 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import styles from './NavBar.module.css';
 
 function NavBar() {
 	const router = useRouter();
-	//각 라우터의 정보값 확인 가능 (pathname)
-	console.log(router);
 
 	return (
 		<nav>
-			<Link href='/' style={{ color: router.pathname === '/' ? 'red' : 'blue' }}>
+			<Link href='/' className={`${styles.link} ${router.pathname === '/' ? styles.active : ''}`}>
 				Home
 			</Link>
-			<Link href='/about' style={{ color: router.pathname === '/about' ? 'red' : 'blue' }}>
+			<Link
+				href='/about'
+				className={`${styles.link} ${router.pathname === '/about' ? styles.active : ''}`}>
 				About
 			</Link>
 		</nav>
