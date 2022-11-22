@@ -6,7 +6,6 @@ function NavBar() {
 
 	return (
 		<nav>
-			{/* NextJS 13버전업되면서 Link안에 a를 넣을수 없게 바뀌었으나 그러면 style jsx가 안 먹음 : legacyBehavior적용 */}
 			<Link href='/' legacyBehavior>
 				<a className={router.pathname === '/' ? 'active' : ''}>Home</a>
 			</Link>
