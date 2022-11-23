@@ -5,7 +5,6 @@ import Seo from '../component/Seo';
 export default function Home({ results }) {
 	const router = useRouter();
 
-	//파일명을 [...이름].js로 변경하면 url로 넘기는 여러 정보값을 router에서 배열로 받음
 	const handleClick = (id, title) => {
 		router.push(`/movies/${title}/${id}`);
 	};
@@ -14,7 +13,7 @@ export default function Home({ results }) {
 		<div className='container'>
 			<Seo title='Home' />
 
-			{results?.map((movie) => (
+			{results.map((movie) => (
 				<div
 					className='movie'
 					key={movie.id}
@@ -22,7 +21,6 @@ export default function Home({ results }) {
 					<img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
 
 					<h4>
-						{/* 파일명을 [...이름].js로 변경하면 url로 넘기는 여러 정보값을 router에서 배열로 받음 */}
 						<Link href={`/movies/${movie.original_title}/${movie.id}`} legacyBehavior>
 							<a>{movie.original_title}</a>
 						</Link>
