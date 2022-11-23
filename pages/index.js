@@ -3,18 +3,19 @@ import { useRouter } from 'next/router';
 import Seo from '../component/Seo';
 
 export default function Home({ results }) {
+	console.log(results);
 	const router = useRouter();
 
-	const handleClick = (id, title) => {
+	const handleClick = (id, title, content, img) => {
 		router.push(
 			{
 				pathname: `/movies/${id}`,
 				query: {
 					title: title,
+					content: content,
+					img: img,
 				},
 			},
-			//push의 두번째 인수로 화면에 보일 url만 등록가능
-			//이제 실제 url에는 query부분은 보이지 않지만 값을 전달됨
 			`/movies/${id}`
 		);
 	};
@@ -27,7 +28,9 @@ export default function Home({ results }) {
 				<div
 					className='movie'
 					key={movie.id}
-					onClick={() => handleClick(movie.id, movie.original_title)}>
+					onClick={() =>
+						handleClick(movie.id, movie.original_title, movie.overview, movie.backdrop_path)
+					}>
 					<img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
 
 					<h4>
@@ -36,6 +39,8 @@ export default function Home({ results }) {
 								pathname: `/movies/${movie.id}`,
 								query: {
 									title: movie.original_title,
+									content: movie.overview,
+									img: movie.backdrop_path,
 								},
 							}}
 							as={`/movies/${movie.id}`}
