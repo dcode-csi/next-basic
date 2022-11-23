@@ -57,7 +57,9 @@ export default function Home({ results }) {
 }
 
 export async function getServerSideProps() {
-	const { results } = await (await fetch('http://localhost:3000/api/movies')).json();
+	const { results } = await (
+		await fetch('https://vercel.com/dcode-next/next-basic/api/movies')
+	).json();
 	return {
 		props: { results },
 	};
