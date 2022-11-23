@@ -5,15 +5,18 @@ import Seo from '../component/Seo';
 export default function Home({ results }) {
 	const router = useRouter();
 
-	//useRouter를 이용하여 쿼리스트링으로 객체정보도 전달 가능
-	//브라우저에서 url뒤에 title=potato정보값이 같이 넘어가는것을 확인
-	const handleClick = (id) => {
-		router.push({
-			pathname: `/movies/${id}`,
-			query: {
-				title: 'potato',
+	const handleClick = (id, title) => {
+		router.push(
+			{
+				pathname: `/movies/${id}`,
+				query: {
+					title: title,
+				},
 			},
-		});
+			//push의 두번째 인수로 화면에 보일 url만 등록가능
+			//이제 실제 url에는 query부분은 보이지 않지만 값을 전달됨
+			`/movies/${id}`
+		);
 	};
 
 	return (
@@ -21,7 +24,10 @@ export default function Home({ results }) {
 			<Seo title='Home' />
 
 			{results?.map((movie) => (
-				<div className='movie' key={movie.id} onClick={() => handleClick(movie.id)}>
+				<div
+					className='movie'
+					key={movie.id}
+					onClick={() => handleClick(movie.id, movie.original_title)}>
 					<img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
 
 					<h4>
