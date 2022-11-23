@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 
-const API_KEY = '4cf85a609f260b43cf0278ad12483b46';
+const API_KEY = process.env.API_KEY;
 
 const nextConfig = {
 	reactStrictMode: true,
