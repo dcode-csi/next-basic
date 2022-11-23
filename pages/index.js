@@ -31,7 +31,15 @@ export default function Home({ results }) {
 					<img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
 
 					<h4>
-						<Link href={`/movies/${movie.id}`} legacyBehavior>
+						<Link
+							href={{
+								pathname: `/movies/${movie.id}`,
+								query: {
+									title: movie.original_title,
+								},
+							}}
+							as={`/movies/${movie.id}`}
+							legacyBehavior>
 							<a>{movie.original_title}</a>
 						</Link>
 					</h4>
