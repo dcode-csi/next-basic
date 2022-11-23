@@ -5,8 +5,15 @@ import Seo from '../component/Seo';
 export default function Home({ results }) {
 	const router = useRouter();
 
+	//useRouter를 이용하여 쿼리스트링으로 객체정보도 전달 가능
+	//브라우저에서 url뒤에 title=potato정보값이 같이 넘어가는것을 확인
 	const handleClick = (id) => {
-		router.push(`/movies/${id}`);
+		router.push({
+			pathname: `/movies/${id}`,
+			query: {
+				title: 'potato',
+			},
+		});
 	};
 
 	return (
