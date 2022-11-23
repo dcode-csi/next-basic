@@ -5,18 +5,9 @@ import Seo from '../component/Seo';
 export default function Home({ results }) {
 	const router = useRouter();
 
+	//파일명을 [...이름].js로 변경하면 url로 넘기는 여러 정보값을 router에서 배열로 받음
 	const handleClick = (id, title) => {
-		router.push(
-			{
-				pathname: `/movies/${id}`,
-				query: {
-					title: title,
-				},
-			},
-			//push의 두번째 인수로 화면에 보일 url만 등록가능
-			//이제 실제 url에는 query부분은 보이지 않지만 값을 전달됨
-			`/movies/${id}`
-		);
+		router.push(`/movies/${title}/${id}`);
 	};
 
 	return (
@@ -31,15 +22,8 @@ export default function Home({ results }) {
 					<img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
 
 					<h4>
-						<Link
-							href={{
-								pathname: `/movies/${movie.id}`,
-								query: {
-									title: movie.original_title,
-								},
-							}}
-							as={`/movies/${movie.id}`}
-							legacyBehavior>
+						{/* 파일명을 [...이름].js로 변경하면 url로 넘기는 여러 정보값을 router에서 배열로 받음 */}
+						<Link href={`/movies/${movie.original_title}/${movie.id}`} legacyBehavior>
 							<a>{movie.original_title}</a>
 						</Link>
 					</h4>
