@@ -1,18 +1,22 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Seo from '../component/Seo';
 
 export default function Home({ results }) {
+	const router = useRouter();
+
+	const handleClick = (id) => {
+		router.push(`/movies/${id}`);
+	};
+
 	return (
 		<div className='container'>
 			<Seo title='Home' />
 
 			{results?.map((movie) => (
-				//만약 Link컴포넌트로 div같은 블록요소를 감싸면 hydration에러 발생
-				//Link는 a태그로 렌더링되므로 a요소 안에는 블록요소가 올수없기 때문
-				<div className='movie' key={movie.id}>
-					<Link key={movie.id} href={`/movies/${movie.id}`}>
-						<img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
-					</Link>
+				<div className='movie' key={movie.id} onClick={() => handleClick(movie.id)}>
+					<img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
+
 					<h4>
 						<Link href={`/movies/${movie.id}`} legacyBehavior>
 							<a>{movie.original_title}</a>
